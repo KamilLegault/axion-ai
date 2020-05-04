@@ -1,0 +1,43 @@
+<html>
+
+<body>
+    <h1>Axion AI - LIVE DEMO</h1>
+    <h2>Type a URL:</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>[Video]</td>
+                <td>[Transcript]</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width:30%" valign="top">
+                    <form action="" method="post" novalidate>
+                    {{ form.hidden_tag() }}
+                    {{ form.yt_url() }}
+                    {{ form.submit() }}
+                    </form>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ vidId }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </td>
+                <td style="width:70%">
+                    {% for utterance in utterances %}
+                    <p>{{ utterance }}
+                        <p>
+                            {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
