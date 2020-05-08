@@ -1,0 +1,47 @@
+<html>
+
+<body>
+    <h1>Axion AI - LIVE DEMO</h1>
+    <h2>Upload a mp4 file:</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>[Video]</td>
+                <td>[Transcript]</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width:30%" valign="top">
+                    <form action="" method="post" enctype="multipart/form-data" novalidate>
+                    {{ form.hidden_tag() }}
+                    {{ form.vid() }}
+                    {{ form.submit() }}
+                    </form>
+                    <p>
+                    <video width="320" height="240" controls>
+                      <source src="{{ url_for('static', filename=filename)}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td style="width:70%">
+                    {% for utterance in utterances %}
+                    <p>{{ utterance }}
+                        <p>
+                            {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
