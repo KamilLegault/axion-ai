@@ -1,7 +1,6 @@
-<html>
-
-<body>
+{% extends 'bootstrap/base.html' %}
     <h1>Axion AI - LIVE DEMO</h1>
+{% block content %}
     <h2>Upload a mp4 file:</h2>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -12,7 +11,7 @@
         </ul>
         {% endif %}
         {% endwith %}
-    <table width="100%">
+    <table class="table" width="100%">
         <thead>
             <tr>
                 <td>[Video]</td>
@@ -42,6 +41,4 @@
             </tr>
         </tbody>
     </table>
-</body>
-
-</html>
+{% endblock %}
