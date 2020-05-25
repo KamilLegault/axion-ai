@@ -48,4 +48,4 @@ def video():
         transcript = get_transcript(data)
         utterances = [ "Speaker: "+str(t['speaker'])+" "+t['transcript'] for t in transcript]
         return render_template('video.html',utterances=utterances,form=form,filename=filename)
-    return render_template('video.html',utterances=utterances,form=form)
+    return render_template('video.html',utterances=utterances,form=form,filename="standby.mp4")
