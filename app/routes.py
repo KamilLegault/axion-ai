@@ -14,8 +14,8 @@ def extract_lines(data):
 
 @app.route('/',methods=['GET', 'POST'])
 @app.route('/index',methods=['GET', 'POST'])
-@app.route('/video',methods=['GET', 'POST'])
-def video():
+#@app.route('/video',methods=['GET', 'POST'])
+def index():
     utterances = ["Nothing to diplay yet!", "Just upload a file"]
     form = VideoForm()
     if form.validate_on_submit():
@@ -34,5 +34,5 @@ def video():
         print(type(data))
         transcript = get_transcript(data)
         utterances = [ "Speaker: "+str(t['speaker'])+" "+t['transcript'] for t in transcript]
-        return render_template('video.html',utterances=utterances,form=form,filename=filename)
-    return render_template('video.html',utterances=utterances,form=form,filename="standby.mp4")
+        return render_template('index.html',utterances=utterances,form=form,filename=filename)
+    return render_template('index.html',utterances=utterances,form=form,filename="standby.mp4")
