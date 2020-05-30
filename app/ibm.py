@@ -28,7 +28,7 @@ class MyRecognizeCallback(RecognizeCallback):
 
 myRecognizeCallback = MyRecognizeCallback()
 
-def transcribe(audio_filename):
+def transcribe_audio(audio_filename):
     #with open(join(dirname(__file__), './static/', audio_file),'rb') as audio_file:
     with open(audio_filename,'rb') as audio_file:
         #audio_source = AudioSource(audio_file)
