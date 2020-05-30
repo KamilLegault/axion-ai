@@ -53,7 +53,9 @@ def upload_video():
             full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             app.config['FILENAME'] = full_filename
             file.save(full_filename)
-        return res
+            return res
+        else:
+            return make_response(jsonify({"message": "File failed"}), 500)
 
     return render_template("upload.html")
 
