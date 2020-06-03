@@ -230,9 +230,7 @@ function transcribe()
   transcribing_btn.classList.remove("d-none");
   transcribe_btn.classList.add("d-none");
   show_alert("Transcription started, this may take a while", "warning");
-  $.post('/transcribe', {
-      text: ''
-  }).done(function(response) {
+  $.post({url:'/transcribe',timeout:0 }).done(function(response) {
       show_alert("Transcription completed", "success");
       transcribing_btn.classList.add("d-none");
       response['text'].forEach(addText)

@@ -53,20 +53,26 @@ def upload_video():
             full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             app.config['FILENAME'] = full_filename
             file.save(full_filename)
+            print('success in file saving')
+            print(app.config['FILENAME'])
             return res
         else:
+            print('File failed')
             return make_response(jsonify({"message": "File failed"}), 500)
 
     return render_template("upload.html")
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
+    print("*Entering transcription function*")
     audio_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'theaudio.mp3')
     full_filename = app.config['FILENAME']
+    print("**Begin AUDIO EXTRACTION**")
     extract_audio(filename=full_filename,out=audio_filename)
-    
+    print("**Begin AUDIO TRANSCRIPTION**") 
     data = transcribe_audio(audio_filename)
-    
+    print("**PARSE TRANSCRIPT**")
     transcript = get_transcript(data)
+    print(transcript)
     utterances = [ "Speaker "+str(t['speaker'])+": "+t['transcript'] for t in transcript]
     return jsonify({'text': utterances})
